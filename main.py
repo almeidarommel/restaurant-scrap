@@ -2,8 +2,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.wait import WebDriverWait
-# rom selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 
 city = str(input('type the destination city: '))
@@ -53,7 +51,7 @@ for a in range(0, pagg):
             opening = 'no opening hours'
         # storage
         dat = {
-            'Name Location': title,
+            'Name': title,
             'Rating': rating,
             'Review': review,
             'location': location,
