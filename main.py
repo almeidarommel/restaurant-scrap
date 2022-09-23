@@ -12,7 +12,7 @@ driver = webdriver.Chrome(service=s)
 
 driver.maximize_window()
 driver.get(f'https://www.google.com/search?q=restaurant+in+{city}')
-time.sleep(7)
+time.sleep(5)
 driver.find_element(by=By.XPATH, value='//*[@id="Odp5De"]/div/div/div[2]/div[1]/div[4]/g-more-link/a/div/span[1]').click()
 
 data = []
@@ -30,7 +30,7 @@ for a in range(0, pagg):
         # start scrap
         title = driver.find_element(by=By.CLASS_NAME, value='SPZz6b').find_element(by=By.TAG_NAME, value='h2').find_element(by=By.TAG_NAME, value='span').text
         rating = driver.find_element(by=By.CLASS_NAME, value='Aq14fc').text
-        review = driver.find_element(by=By.CLASS_NAME, value='hqzQac').find_element(by=By.XPATH, value='//*[@id="akp_tsuid_9"]/div/div[1]/div/div/block-component/div/div[1]/div/div/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div/div/span[3]/span/a/span').text
+        review = driver.find_element(by=By.CLASS_NAME, value='hqzQac').find_element(by=By.XPATH, value='//a[@data-sort_by="qualityScore"]').find_element(by=By.TAG_NAME, value='span').text
         location = driver.find_element(by=By.CLASS_NAME, value='LrzXr').text
 
         # scrap phone number
@@ -46,9 +46,10 @@ for a in range(0, pagg):
             if opening == '':
                 time.sleep(3)
                 opening = driver.find_element(by=By.XPATH, value='//table[(@class="WgFkxc CLtZU")]').text
-                driver.find_element(by=By.XPATH, value='//*[@id="gsr"]/div[12]/g-lightbox/div/div[2]/div[2]').click()
+                driver.find_elements(by=By.XPATH, value='//div[@class="Xvesr"]')[3].click()
         except Exception:
             opening = 'no opening hours'
+
         # storage
         dat = {
             'Name': title,
